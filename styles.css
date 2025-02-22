@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #111;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+#confirmation {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+#confirmation button {
+    margin: 10px;
+    padding: 10px;
+    background-color: #333;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+#confirmation button:hover {
+    background-color: #555;
+}
+#tooltip {
+display: none;
+position: fixed;
+background-color: rgba(0, 0, 0, 0.8);
+color: white;
+padding: 10px;
+border-radius: 5px;
+pointer-events: none;
+font-size: 14px;
+max-width: 300px;
+text-align: center;
+}
+#controls {
+position: fixed;
+top: 10px;
+left: 10px;
+z-index: 1000;
+}
+
+#controls button {
+padding: 10px;
+margin: 5px;
+background-color: #333;
+border: none;
+color: white;
+cursor: pointer;
+}
+
+#controls button:hover {
+background-color: #555;
+}
