@@ -61,7 +61,7 @@ let skillBlocks = {
 
 let icons = {
     "Gołodupiec": "https://cdn.discordapp.com/avatars/472993187183591425/a_a2337b68637c7195080952341f92d3b5.gif?size=2048",
-    "Krawiec": "https://github.com/Msciciel55/drzewko/blob/main/szpula-ig-a-.png?raw=true",
+
 };
 let notes = {
  "Gołodupiec": "Każdy jest gołodupcem",
@@ -87,6 +87,35 @@ function setup() {
     let start = new Node(0, 0, "Gołodupiec");
     nodes.push(start);
     learnedSkills.add(start.label);
+
+
+    let progressNode1 = new Node(0, -400, "Inteligencja", true); // true oznacza, że to węzeł z paskiem postępu
+    nodes.push(progressNode1);
+    connections.push([start, progressNode1]);
+
+    let progressNode2 = new Node(-100, -350, "Zręczność", true); // true oznacza, że to węzeł z paskiem postępu
+    nodes.push(progressNode2);
+    connections.push([start, progressNode2]);
+
+    let progressNode22 = new Node(100, -350, "Siła", true); // true oznacza, że to węzeł z paskiem postępu
+    nodes.push(progressNode22);
+    connections.push([start, progressNode22]);
+
+    let progressNode3 = new Node(-200, -300, "Bronie jednoręczne", true); // true oznacza, że to węzeł z paskiem postępu
+    nodes.push(progressNode3);
+    connections.push([start, progressNode3]);
+
+    let progressNode33 = new Node(200, -300, "Bronie Dwuręczne", true); // true oznacza, że to węzeł z paskiem postępu
+    nodes.push(progressNode33);
+    connections.push([start, progressNode33]);
+
+    let progressNode4 = new Node(-300, -250, "Łuki", true); // true oznacza, że to węzeł z paskiem postępu
+    nodes.push(progressNode4);
+    connections.push([start, progressNode4]);
+
+    let progressNode44 = new Node(300, -250, "Kusze", true); // true oznacza, że to węzeł z paskiem postępu
+    nodes.push(progressNode44);
+    connections.push([start, progressNode44]);
 
     let professions = ["Kowal", "Robotnik", "Krawiec","Łowca","Karczmarz", "Uczony","Miotacz", "Stolarz", "Złodziej"];
     let offsets = [
@@ -325,60 +354,100 @@ for (let miotaczJob of miotaczNodes) {
 }
 
 function draw() {
-background(20);
-translate(width / 2 + offsetX, height / 2 + offsetY);
-scale(zoomLevel);
-stroke(200);
+    background(20);
+    translate(width / 2 + offsetX, height / 2 + offsetY);
+    scale(zoomLevel);
+    stroke(200);
 
-for (let conn of connections) {
-let opacity = 255;
-if (isSkillBlocked(conn[0].label) || isSkillBlocked(conn[1].label)) {
-    opacity = 50;
-}
-strokeWeight(1);
-stroke(200, opacity);
-line(conn[0].x, conn[0].y, conn[1].x, conn[1].y);
-}
+    for (let conn of connections) {
+        let opacity = 255;
+        if (isSkillBlocked(conn[0].label) || isSkillBlocked(conn[1].label)) {
+            opacity = 50;
+        }
+        strokeWeight(1);
+        stroke(200, opacity);
+        line(conn[0].x, conn[0].y, conn[1].x, conn[1].y);
+    }
 
-for (let node of nodes) {
-let opacity = 255;
-if (isSkillBlocked(node.label)) {
-    opacity = 50;
-}
-fill(node.isActive ? 'red' : `rgba(173, 216, 230, ${opacity / 255})`);
-stroke(node.isActive ? 255 : 255);
-strokeWeight(node.isActive ? 3 : 1);
-ellipse(node.x, node.y, 40);
+    for (let node of nodes) {
+        let opacity = 255;
+        if (isSkillBlocked(node.label)) {
+            opacity = 50;
+        }
 
-if (icons[node.label]) {
-    let iconOpacity = isSkillBlocked(node.label) ? 50 : 255;
+        if (node.isProgressNode) {
+            // Rysuj większe koło dla węzła z paskiem postępu
+            fill(node.isActive ? 'red' : `rgba(173, 216, 230, ${opacity / 255})`);
+            stroke(node.isActive ? 255 : 255);
+            strokeWeight(node.isActive ? 3 : 1);
+            ellipse(node.x, node.y, 60); // Większe koło (60 pikseli)
 
-    drawingContext.save();
-    drawingContext.beginPath(); 
-    drawingContext.arc(node.x, node.y, 15, 0, TWO_PI); 
-    drawingContext.clip(); 
+            // Rysuj pasek postępu wokół krawędzi koła
+            let radius = 30; // Promień koła
+            let startAngle = -HALF_PI; // Zacznij od góry (-90 stopni)
+            let endAngle = startAngle + TWO_PI * (node.progress / 100); // Oblicz końcowy kąt
 
-    imageMode(CENTER);
-    tint(255, iconOpacity);
-    image(icons[node.label], node.x, node.y, 50, 50);
-    noTint();
+            // Tło paska postępu (pełne koło)
+            noFill();
+            stroke(100, 100, 100, opacity);
+            strokeWeight(6); // Grubość paska
+            arc(node.x, node.y, radius * 2, radius * 2, 0, TWO_PI);
 
-    drawingContext.restore();
-}
+            // Wypełnienie paska postępu
+            stroke(0, 255, 0, opacity);
+            strokeWeight(6); // Grubość paska
+            arc(node.x, node.y, radius * 2, radius * 2, startAngle, endAngle);
 
-fill(255, opacity);
-noStroke();
-textAlign(CENTER, CENTER);
-textSize(12);
-text(node.label, node.x, node.y - 30);
+            // Napis z procentami w środku koła
+            fill(255, opacity);
+            noStroke();
+            textAlign(CENTER, CENTER);
+            textSize(12);
+            text(`${node.progress}%`, node.x, node.y);
 
-if (isSkillBlocked(node.label)) {
-    stroke(255, 0, 0);
-    strokeWeight(3);
-    line(node.x - 20, node.y - 20, node.x + 20, node.y + 20);
-    line(node.x - 20, node.y + 20, node.x + 20, node.y - 20);
-}
-}
+            // Nazwa umiejętności nad kołem
+            fill(255, opacity);
+            noStroke();
+            textAlign(CENTER, CENTER);
+            textSize(12);
+            text(node.label, node.x, node.y - 40); // Nazwa umiejętności nad kołem
+        } else {
+            // Standardowe koło dla zwykłych węzłów
+            fill(node.isActive ? 'red' : `rgba(173, 216, 230, ${opacity / 255})`);
+            stroke(node.isActive ? 255 : 255);
+            strokeWeight(node.isActive ? 3 : 1);
+            ellipse(node.x, node.y, 40);
+
+            if (icons[node.label]) {
+                let iconOpacity = isSkillBlocked(node.label) ? 50 : 255;
+
+                drawingContext.save();
+                drawingContext.beginPath();
+                drawingContext.arc(node.x, node.y, 15, 0, TWO_PI);
+                drawingContext.clip();
+
+                imageMode(CENTER);
+                tint(255, iconOpacity);
+                image(icons[node.label], node.x, node.y, 50, 50);
+                noTint();
+
+                drawingContext.restore();
+            }
+
+            fill(255, opacity);
+            noStroke();
+            textAlign(CENTER, CENTER);
+            textSize(12);
+            text(node.label, node.x, node.y - 30);
+        }
+
+        if (isSkillBlocked(node.label)) {
+            stroke(255, 0, 0);
+            strokeWeight(3);
+            line(node.x - 20, node.y - 20, node.x + 20, node.y + 20);
+            line(node.x - 20, node.y + 20, node.x + 20, node.y - 20);
+        }
+    }
 }
 
 function mousePressed() {
@@ -477,6 +546,16 @@ function mouseWheel(event) {
 window.addEventListener('wheel', mouseWheel, { passive: false });
 
 function handleLearning(node) {
+    if (node.isProgressNode) {
+        // Jeśli to węzeł z paskiem postępu, zwiększ postęp
+        node.progress += 10; // Zwiększ postęp o 10% przy każdym kliknięciu
+        if (node.progress >= 100) {
+            node.progress = 100; // Nie przekraczaj 100%
+            node.isActive = true; // Oznacz węzeł jako aktywny po wypełnieniu
+        }
+        return;
+    }
+
     if (learnedSkills.has(node.label)) {
         return;
     }
@@ -641,11 +720,14 @@ node.isActive = node.label === "Gołodupiec"; // Tylko "Gołodupiec" jest aktywn
 
 document.getElementById('undoButton').addEventListener('click', undo);
 document.getElementById('resetButton').addEventListener('click', reset);
+
 class Node {
-    constructor(x, y, label) {
+    constructor(x, y, label, isProgressNode = false) {
         this.x = x;
         this.y = y;
         this.label = label;
         this.isActive = label === "Gołodupiec";
+        this.isProgressNode = isProgressNode; // Czy to węzeł z paskiem postępu?
+        this.progress = 0; // Początkowy stan postępu (0-100)
     }
 }
