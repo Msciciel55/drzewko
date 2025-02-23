@@ -39,6 +39,7 @@ pointer-events: none;
 font-size: 14px;
 max-width: 300px;
 text-align: center;
+white-space: normal;
 }
 #controls {
 position: fixed;

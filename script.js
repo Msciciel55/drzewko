@@ -15,48 +15,6 @@ let zoomLevel = 1;
 const zoomFactor = 0.1;
 
 let skillBlocks = {
- "Farmer T3": ["Mielarz T2", "Mielarz T3","Cieśla T1","Cieśla T2","Cieśla T3","Hutnik T1","Hutnik T2","Hutnik T3"],
- "Farmer T2": ["Miecznik T5", "Płatnerz T5", "Kuśnierz T5", "Kaletnik T5"],
- "Mielarz T1": ["Drwal T3","Górnik T3","Hutnik T3","Hutnik T2","Hutnik T1", "Cieśla T1", "Cieśla T2", "Cieśla T3","Miecznik T5","Płatnerz T5","Kuśnierz T5", "Kaletnik T5","Hutnik T3"],
- "Mielarz T3":["Farmer T3"],
- "Farmer T3":["Mielarz T3"],
- "Farmer T3":["Mielarz T3"],
- "Farmer T1":["Mielarz T3", "Cieśla T3","Hutnik T3"],
- "Farmer T3 + Mielarz T2": ["Drwal T2", "Górnik T2"],
- "Farmer T2 + Mielarz T3": ["Drwal T2", "Górnik T2"],
- "Farmer T3 + Farmer T2": ["Miecznik T4", "Płatnerz T4", "Kuśnierz T4", "Kaletnik T4"],
- "Farmer T1 + Mielarz T1": ["Miecznik T4", "Płatnerz T4", "Kuśnierz T4", "Kaletnik T4"],
- "Farmer T2 + Mielarz T1": ["Miecznik T3", "Płatnerz T3", "Kuśnierz T3", "Kaletnik T3"],
- "Farmer T1 + Mielarz T2": ["Miecznik T3", "Płatnerz T3", "Kuśnierz T3", "Kaletnik T3"],
- "Farmer T3 + Mielarz T2 + Drwal T1": ["Miecznik T2", "Płatnerz T2", "Kuśnierz T2", "Kaletnik T2"],
- "Farmer T3 + Mielarz T2 + Drwal T1 + Górnik T1": ["Kowal","Krawiec","Miecznik T1","Płatnerz T1","Kuśnierz T1","Kaletnik T1"],
- "Farmer T3 + Mielarz T2 + Kowal": ["Krawiec","Kuśnierz T1", "Kuśnierz T2", "Kaletnik T1","Kaletnik T2"],
- "Farmer T3 + Mielarz T2 + Krawiec": ["Kowal","Miecznik T1", "Miecznik T2", "Płatnerz T1","Płatnerz T2"],
-
- "Płatnerz T2" : ["Mielarz T3","Cieśla T3","Hutnik T3"],
- "Płatnerz T3" : ["Miecznik T5","Kuśnierz T5","Kaletnik T5","Mielarz T2","Cieśla T2","Hutnik T2","Farmer T3","Drwal T3","Górnik T3"],
- "Płatnerz T4" : ["Miecznik T4","Kuśnierz T4","Kaletnik T4","Mielarz T1","Cieśla T1","Hutnik T1","Farmer T2","Drwal T2","Górnik T2"],
- "Płatnerz T5" : ["Miecznik T3","Kuśnierz T3","Kaletnik T3"],
- "Płatnerz T5" : ["Miecznik T3","Kuśnierz T3","Kaletnik T3"],
- "Płatnerz T5 + Miecznik T1" : ["Kuśnierz T2","Kaletnik T2"],
- "Płatnerz T5 + Miecznik T2" : ["Kuśnierz T1","Kaletnik T1","Krawiec"],
- "Płatnerz T5 + Miecznik T1 + Farmer T1" : ["Drwal T1","Górnik T1","Kuśnierz T1","Kaletnik T1","Krawiec"],
- "Płatnerz T5 + Miecznik T1 + Drwal T1" : ["Farmer T1","Górnik T1","Kuśnierz T1","Kaletnik T1","Krawiec"],
- "Płatnerz T5 + Miecznik T1 + Górnik T1" : ["Drwal T1","Górnik T1","Kuśnierz T1","Kaletnik T1","Krawiec"],
- "Płatnerz T5 + Miecznik T1 + Kuśnierz T1" : ["Drwal T1","Górnik T1","Farmer T1","Kaletnik T1","Robotnik"],
- "Płatnerz T5 + Miecznik T1 + Kaletnik T1" : ["Drwal T1","Górnik T1","Farmer T1","Kuśnierz T1","Robotnik"],
-
- "Miecznik T2" : ["Kuśnierz T5","Kuśnierz T5","Kaletnik T5","Mielarz T3","Cieśla T3","Hutnik T3"],
- "Miecznik T3" : ["Płatnerz T5","Kuśnierz T4","Kaletnik T4","Mielarz T2","Cieśla T2","Hutnik T2","Farmer T3","Drwal T3","Górnik T3"],
- "Miecznik T4" : ["Płatnerz T4","Kuśnierz T3","Kaletnik T3","Mielarz T1","Cieśla T1","Hutnik T1","Farmer T2","Drwal T2","Górnik T2"],
- "Miecznik T5" : ["Płatnerz T3","Kuśnierz T2","Kaletnik T2"],
- "Miecznik T5 + Płatnerz T1" : ["Kuśnierz T2","Kaletnik T2"],
- "Miecznik T5 + Płatnerz T2" : ["Kuśnierz T1","Kaletnik T1","Krawiec"],
- "Miecznik T5 + Płatnerz T1 + Farmer T1" : ["Drwal T1","Górnik T1","Kuśnierz T1","Kaletnik T1","Krawiec"],
- "Miecznik T5 + Płatnerz T1 + Drwal T1" : ["Farmer T1","Górnik T1","Kuśnierz T1","Kaletnik T1","Krawiec"],
- "Miecznik T5 + Płatnerz T1 + Górnik T1" : ["Drwal T1","Farmer T1","Kuśnierz T1","Kaletnik T1","Krawiec"],
- "Miecznik T5 + Płatnerz T1 + Kuśnierz T1" : ["Drwal T1","Górnik T1","Farmer T1","Kaletnik T1","Robotnik"],
- "Miecznik T5 + Płatnerz T1 + Kaletnik T1" : ["Drwal T1","Górnik T1","Farmer T1","Kuśnierz T1","Robotnik"],
 };
 
 let icons = {
@@ -68,12 +26,10 @@ let notes = {
  "Kowal": "KUJE kurwa",
  "Robotnik": "Robotnik wykonuje podstawowe prace.",
  "Krawiec": "Krawiec szyje ubrania.",
- "Farmer T1": "Nauka sadzenia i pielegnacji warzyw i zbóż",
- "Farmer T2": "Nauka sadzenia i pielegnacji owoców",
- "Farmer T3": "Nauka sadzenia i pielegnacji trudnych odmian warzyw i owoców raz ziół!",
- "Mielarz T1": "Nauka przygotowania ziarna i obsługe młynu",
- "Mielarz T2": "Nauka przygotowania chuj wie czego",
- "Mielarz T3": "Nauka przygotowania prostych przypraw"
+ "Farmer T1": "Podstawa rolnictwa\nTa umiejętność oblokuje:\n-Uprawa marchwi\n-Uprawa ziemniaka\n-Uprawe zboż\n-Mielenie zboża\nWymagania:\n -10PN",
+ "Farmer T2": "Zawansowane rolnictwo\nTa umiejętność oblokuje:\n-Uprawa x\n-Uprawa x\n-Uprawe zboż\n-Mielenie zboża\nWymagania:\n -20PN\n-Dwa tuziny marchwi\n-Trzy tuziny ziemniaków.",
+ "Farmer T3": "Mistrzowskie rolnictwo\nTa umiejętność oblokuje:\n-Uprawa x\n-Uprawa x\n-Uprawe zboż\n-Mielenie zboża\nWymagania:\n -60PN\n-Dwa tuziny x\n-Trzy tuziny x.",
+"Felczer T1": "Medycyna polowa\nTa umiejętność oblokuje:\n-Tworzenie bandaży\n-Tworzenie szyn\nWymagania:\n-10PN",
 };
 function preload() {
     for (let label in icons) {
@@ -146,13 +102,13 @@ function setup() {
         if (professions[i] === "Złodziej") zlodziejNode = node;
     }
 
-    let jobs = ["Farmer", "Mielarz", "Drwal", "Cieśla", "Górnik", "Hutnik"];
+    let jobs = ["Drwal", "Cieśla","Farmer", "Górnik", "Hutnik"];
     let jobNodes = [];
     let jobOffsetY = 150;
     let jobSpacing = 100;
 
     for (let i = 0; i < jobs.length; i++) {
-        let node = new Node(robotnikNode.x + (i - 2.5) * jobSpacing, robotnikNode.y + jobOffsetY, jobs[i] + " T1");
+        let node = new Node(robotnikNode.x + (i - 2) * jobSpacing, robotnikNode.y + jobOffsetY, jobs[i] + " T1");
         nodes.push(node);
         connections.push([robotnikNode, node]);
         jobNodes.push(node);
@@ -194,7 +150,7 @@ function setup() {
         }
     }
 
-    let karczmarzSkills = ["Gorzelnik", "Rzeźnik","Kucharz"];
+    let karczmarzSkills = ["Gorzelnik","Kucharz"];
     let karczmarzOffsetX = 50;
     let karczmarzNodes = [];
 
@@ -305,7 +261,7 @@ function setup() {
         }
     }
 
-    let uczonySkills = ["Alchemnik", "Cyrulik",];
+    let uczonySkills = ["Alchemik", "Felczer"];
 let uczonyOffsetX = -150;
 let uczonyNodes = [];
 
@@ -318,8 +274,8 @@ for (let i = 0; i < uczonySkills.length; i++) {
 }
 
 for (let uczonyJob of uczonyNodes) {
-    let maxTiers = 3;
-    if (uczonyJob.label.startsWith("Alchemik")) {
+    let maxTiers = 1;
+    if (uczonyJob.label.startsWith("Alchemik T1")) {
         maxTiers = 4;
     }
     for (let tier = 2; tier <= maxTiers; tier++) {
@@ -498,25 +454,27 @@ function mouseDragged() {
 }
 
 function mouseMoved() {
-clearTimeout(tooltipTimeout);
-const tooltip = document.getElementById('tooltip');
+    clearTimeout(tooltipTimeout);
+    const tooltip = document.getElementById('tooltip');
     tooltip.style.display = 'none';
-    
+
     let adjustedMouseX = (mouseX - width / 2 - offsetX) / zoomLevel;
     let adjustedMouseY = (mouseY - height / 2 - offsetY) / zoomLevel;
-    
-for (let node of nodes) {
-let d = dist(mouseX - offsetX, mouseY - offsetY, node.x + width / 2, node.y + height / 2);
-if (d < 20) {
-    tooltipTimeout = setTimeout(() => {
-        tooltip.textContent = notes[node.label] || "Brak notatki dla tej umiejętności.";
-        tooltip.style.left = `${mouseX + 10}px`;
-        tooltip.style.top = `${mouseY + 10}px`;
-        tooltip.style.display = 'block';
-    }, 1000);
-    break;
-}
-}
+
+    for (let node of nodes) {
+        let d = dist(mouseX - offsetX, mouseY - offsetY, node.x + width / 2, node.y + height / 2);
+        if (d < 20) {
+            tooltipTimeout = setTimeout(() => {
+                let note = notes[node.label] || "Brak notatki dla tej umiejętności.";
+                note = note.replace(/\n/g, '<br>'); // Zamiana \n na <br>
+                tooltip.innerHTML = note; // Użyj innerHTML zamiast textContent
+                tooltip.style.left = `${mouseX + 10}px`;
+                tooltip.style.top = `${mouseY + 10}px`;
+                tooltip.style.display = 'block';
+            }, 1000);
+            break;
+        }
+    }
 }
 
 function mouseOut() {
