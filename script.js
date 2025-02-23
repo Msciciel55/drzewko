@@ -14,8 +14,7 @@ let isModalOpen = false;
 let zoomLevel = 1; 
 const zoomFactor = 0.1;
 
-let skillBlocks = {
-};
+
 
 let icons = {
     "Gołodupiec": "https://cdn.discordapp.com/avatars/472993187183591425/a_a2337b68637c7195080952341f92d3b5.gif?size=2048",
@@ -75,15 +74,16 @@ function setup() {
 
     let professions = ["Kowal", "Robotnik", "Krawiec","Łowca","Karczmarz", "Uczony","Miotacz", "Stolarz", "Złodziej"];
     let offsets = [
-        {x: -width / 3.5, y: height / 4},
-        {x: 0, y: height / 4},
-        {x: width / 3.5, y: height / 4},
-        {x: -width / 2, y: height / 4},
-        { x: width / 2, y: height / 4 },
-        { x: -width / 1.2, y: height / 4 },
-        { x: width / 1.2, y: height / 4 },
-        { x: -width / 0.9, y: height / 4 },
-        {x: width / 0.9, y: height / 4}
+        {x: -width / 3, y: height / 3},
+        {x: 0, y: height / 3},
+        { x: width / 3, y: height / 3 },
+        
+        {x: -width / 1.68, y: height / 3},
+        { x: width / 1.68, y: height / 3 },
+        { x: -width / 1.15, y: height / 3 },
+        { x: width / 1.15, y: height / 3 },
+        { x: -width / 0.9, y: height / 3 },
+        {x: width / 0.9, y: height / 3 }
     ];
 
     let kowalNode, robotnikNode, krawiecNode, lowcaNode, karczmarzNode, uczonyNode, miotaczNode, stolarzNode, zlodziejNode;
@@ -102,7 +102,7 @@ function setup() {
         if (professions[i] === "Złodziej") zlodziejNode = node;
     }
 
-    let jobs = ["Drwal", "Cieśla","Farmer", "Górnik", "Hutnik"];
+    let jobs = ["Drwal", "Cieśla","Farmer", "Hutnik", "Górnik"];
     let jobNodes = [];
     let jobOffsetY = 150;
     let jobSpacing = 100;
@@ -125,7 +125,7 @@ function setup() {
     }
 
     let lowcaSkills = ["Myśliwy","Rybak","Garbarz"];
-    let lowcaOffsetX = -250;
+    let lowcaOffsetX = -100;
     let lowcaNodes = [];
 
     for (let i = 0; i < lowcaSkills.length; i++) {
@@ -151,7 +151,7 @@ function setup() {
     }
 
     let karczmarzSkills = ["Gorzelnik","Kucharz"];
-    let karczmarzOffsetX = 50;
+    let karczmarzOffsetX = -50;
     let karczmarzNodes = [];
 
     for (let i = 0; i < karczmarzSkills.length; i++) {
@@ -176,7 +176,7 @@ function setup() {
     }
 
     let zlodziejSkills = ["Złodziej"];
-    let zlodziejOffsetX = 50;
+    let zlodziejOffsetX = 0;
     let zlodziejNodes = [];
     
     for (let i = 0; i < zlodziejSkills.length; i++) {
@@ -198,7 +198,7 @@ function setup() {
     }
 
     let kowalSkills = ["Miecznik", "Płatnerz"];
-    let kowalOffsetX = -150;
+    let kowalOffsetX = -50;
     let kowalNodes = [];
 
     for (let i = 0; i < kowalSkills.length; i++) {
@@ -219,7 +219,7 @@ function setup() {
     }
 
     let stolarzSkills = ["Stolarz"];
-    let stolarzOffsetX = -50;
+    let stolarzOffsetX = -0;
     let stolarzNodes = [];
     
     for (let i = 0; i < stolarzSkills.length; i++) {
@@ -241,7 +241,7 @@ function setup() {
     }
 
     let krawiecSkills = ["Kuśnierz", "Kaletnik"];
-    let krawiecOffsetX = 50;
+    let krawiecOffsetX = -50;
     let krawiecNodes = [];
 
     for (let i = 0; i < krawiecSkills.length; i++) {
@@ -262,7 +262,7 @@ function setup() {
     }
 
     let uczonySkills = ["Alchemik", "Felczer"];
-let uczonyOffsetX = -150;
+let uczonyOffsetX = -50;
 let uczonyNodes = [];
 
 for (let i = 0; i < uczonySkills.length; i++) {
@@ -287,7 +287,7 @@ for (let uczonyJob of uczonyNodes) {
     }
     
     let miotaczSkills = ["Łuczarz", "Kusznikarz",];
-let miotaczOffsetX = 50;
+let miotaczOffsetX = -50;
 let miotaczNodes = [];
 
 for (let i = 0; i < miotaczSkills.length; i++) {
