@@ -11,8 +11,8 @@ let learnedSkills = new Set();
 let blockedSkills = new Set();
 let history = [];
 let isModalOpen = false;
-let zoomLevel = 1; // Początkowy poziom zoomu
-const zoomFactor = 0.1; // Współczynnik zmiany zoomu
+let zoomLevel = 1; 
+const zoomFactor = 0.1;
 
 let skillBlocks = {
  "Farmer T3": ["Mielarz T2", "Mielarz T3","Cieśla T1","Cieśla T2","Cieśla T3","Hutnik T1","Hutnik T2","Hutnik T3"],
@@ -89,31 +89,31 @@ function setup() {
     learnedSkills.add(start.label);
 
 
-    let progressNode1 = new Node(0, -400, "Inteligencja", true); // true oznacza, że to węzeł z paskiem postępu
+    let progressNode1 = new Node(0, -400, "Inteligencja", true); 
     nodes.push(progressNode1);
     connections.push([start, progressNode1]);
 
-    let progressNode2 = new Node(-100, -350, "Zręczność", true); // true oznacza, że to węzeł z paskiem postępu
+    let progressNode2 = new Node(-100, -350, "Zręczność", true); 
     nodes.push(progressNode2);
     connections.push([start, progressNode2]);
 
-    let progressNode22 = new Node(100, -350, "Siła", true); // true oznacza, że to węzeł z paskiem postępu
+    let progressNode22 = new Node(100, -350, "Siła", true); 
     nodes.push(progressNode22);
     connections.push([start, progressNode22]);
 
-    let progressNode3 = new Node(-200, -300, "Bronie jednoręczne", true); // true oznacza, że to węzeł z paskiem postępu
+    let progressNode3 = new Node(-200, -300, "Bronie jednoręczne", true); 
     nodes.push(progressNode3);
     connections.push([start, progressNode3]);
 
-    let progressNode33 = new Node(200, -300, "Bronie Dwuręczne", true); // true oznacza, że to węzeł z paskiem postępu
+    let progressNode33 = new Node(200, -300, "Bronie Dwuręczne", true); 
     nodes.push(progressNode33);
     connections.push([start, progressNode33]);
 
-    let progressNode4 = new Node(-300, -250, "Łuki", true); // true oznacza, że to węzeł z paskiem postępu
+    let progressNode4 = new Node(-300, -250, "Łuki", true); 
     nodes.push(progressNode4);
     connections.push([start, progressNode4]);
 
-    let progressNode44 = new Node(300, -250, "Kusze", true); // true oznacza, że to węzeł z paskiem postępu
+    let progressNode44 = new Node(300, -250, "Kusze", true); 
     nodes.push(progressNode44);
     connections.push([start, progressNode44]);
 
@@ -181,9 +181,9 @@ function setup() {
     }
 
     for (let lowcaJob of lowcaNodes) {
-        let maxTiers = 3; // Domyślnie 3 tiery dla Rybaka i Garbarza
+        let maxTiers = 3; 
         if (lowcaJob.label.startsWith("Myśliwy")) {
-            maxTiers = 5; // Myśliwy ma 5 tierów
+            maxTiers = 5; 
         }
     
         for (let tier = 2; tier <= maxTiers; tier++) {
@@ -376,43 +376,36 @@ function draw() {
         }
 
         if (node.isProgressNode) {
-            // Rysuj większe koło dla węzła z paskiem postępu
             fill(node.isActive ? 'red' : `rgba(173, 216, 230, ${opacity / 255})`);
             stroke(node.isActive ? 255 : 255);
             strokeWeight(node.isActive ? 3 : 1);
-            ellipse(node.x, node.y, 60); // Większe koło (60 pikseli)
+            ellipse(node.x, node.y, 60); 
 
-            // Rysuj pasek postępu wokół krawędzi koła
-            let radius = 30; // Promień koła
-            let startAngle = -HALF_PI; // Zacznij od góry (-90 stopni)
-            let endAngle = startAngle + TWO_PI * (node.progress / 100); // Oblicz końcowy kąt
+            let radius = 30; 
+            let startAngle = -HALF_PI; 
+            let endAngle = startAngle + TWO_PI * (node.progress / 100); 
 
-            // Tło paska postępu (pełne koło)
             noFill();
             stroke(100, 100, 100, opacity);
-            strokeWeight(6); // Grubość paska
+            strokeWeight(6); 
             arc(node.x, node.y, radius * 2, radius * 2, 0, TWO_PI);
 
-            // Wypełnienie paska postępu
             stroke(0, 255, 0, opacity);
-            strokeWeight(6); // Grubość paska
+            strokeWeight(6); 
             arc(node.x, node.y, radius * 2, radius * 2, startAngle, endAngle);
 
-            // Napis z procentami w środku koła
             fill(255, opacity);
             noStroke();
             textAlign(CENTER, CENTER);
             textSize(12);
             text(`${node.progress}%`, node.x, node.y);
 
-            // Nazwa umiejętności nad kołem
             fill(255, opacity);
             noStroke();
             textAlign(CENTER, CENTER);
             textSize(12);
-            text(node.label, node.x, node.y - 40); // Nazwa umiejętności nad kołem
+            text(node.label, node.x, node.y - 40); 
         } else {
-            // Standardowe koło dla zwykłych węzłów
             fill(node.isActive ? 'red' : `rgba(173, 216, 230, ${opacity / 255})`);
             stroke(node.isActive ? 255 : 255);
             strokeWeight(node.isActive ? 3 : 1);
@@ -453,15 +446,26 @@ function draw() {
 function mousePressed() {
     if (isModalOpen) return;
 
+    let adjustedMouseX = (mouseX - width / 2 - offsetX) / zoomLevel;
+    let adjustedMouseY = (mouseY - height / 2 - offsetY) / zoomLevel;
+
     if (mouseButton === RIGHT) {
         isDragging = true;
         lastX = mouseX;
         lastY = mouseY;
+
+        for (let node of nodes) {
+            let d = dist(adjustedMouseX, adjustedMouseY, node.x, node.y);
+            if (d < 20) {
+                draggedNode = node; 
+                break;
+            }
+        }
     }
 
     if (mouseButton === LEFT) {
         for (let node of nodes) {
-            let d = dist(mouseX - offsetX, mouseY - offsetY, node.x + width / 2, node.y + height / 2);
+            let d = dist(adjustedMouseX, adjustedMouseY, node.x, node.y);
             if (d < 20) {
                 handleLearning(node);
                 break;
@@ -526,32 +530,25 @@ document.addEventListener('contextmenu', function(event) {
 });
 
 function mouseWheel(event) {
-    // Zapobiegaj domyślnej akcji scrollowania
     event.preventDefault();
 
-    // Określ kierunek scrollowania
     if (event.deltaY < 0) {
-        // Scroll w górę - powiększ
         zoomLevel += zoomFactor;
     } else {
-        // Scroll w dół - pomniejsz
         zoomLevel -= zoomFactor;
     }
 
-    // Ogranicz poziom zoomu (np. od 0.5 do 3)
     zoomLevel = Math.min(Math.max(zoomLevel, 0.5), 3);
 }
 
-// Podepnij zdarzenie scrolla
 window.addEventListener('wheel', mouseWheel, { passive: false });
 
 function handleLearning(node) {
     if (node.isProgressNode) {
-        // Jeśli to węzeł z paskiem postępu, zwiększ postęp
-        node.progress += 10; // Zwiększ postęp o 10% przy każdym kliknięciu
+        node.progress += 10; 
         if (node.progress >= 100) {
-            node.progress = 100; // Nie przekraczaj 100%
-            node.isActive = true; // Oznacz węzeł jako aktywny po wypełnieniu
+            node.progress = 100; 
+            node.isActive = true;
         }
         return;
     }
@@ -644,7 +641,7 @@ function showConfirmation(node) {
 
 function learnSkill(node) {
 learnedSkills.add(node.label);
-history.push(node.label); // Dodaj do historii
+history.push(node.label);
 
 if (skillBlocks[node.label]) {
 for (let blockedSkill of skillBlocks[node.label]) {
@@ -673,19 +670,17 @@ node.isActive = true;
 }
 
 function undo() {
-if (history.length === 0) return; // Nie ma czego cofać
+if (history.length === 0) return; 
 
-let lastSkill = history.pop(); // Pobierz ostatnią umiejętność z historii
-learnedSkills.delete(lastSkill); // Usuń ją z wybranych umiejętności
+let lastSkill = history.pop(); 
+learnedSkills.delete(lastSkill); 
 
-// Usuń blokady związane z tą umiejętnością
 if (skillBlocks[lastSkill]) {
 for (let blockedSkill of skillBlocks[lastSkill]) {
     blockedSkills.delete(blockedSkill);
 }
 }
 
-// Usuń blokady związane z warunkami
 for (let condition in skillBlocks) {
 if (condition.includes("+")) {
     let requiredSkills = condition.split(" + ");
@@ -698,7 +693,6 @@ if (condition.includes("+")) {
 }
 }
 
-// Zaktualizuj stan węzła
 for (let node of nodes) {
 if (node.label === lastSkill) {
     node.isActive = false;
@@ -708,13 +702,12 @@ if (node.label === lastSkill) {
 }
 
 function reset() {
-learnedSkills.clear(); // Wyczyść wybrane umiejętności
-blockedSkills.clear(); // Wyczyść zablokowane umiejętności
-history = []; // Wyczyść historię
+learnedSkills.clear(); 
+blockedSkills.clear(); 
+history = []; 
 
-// Zresetuj stan wszystkich węzłów
 for (let node of nodes) {
-node.isActive = node.label === "Gołodupiec"; // Tylko "Gołodupiec" jest aktywny na początku
+node.isActive = node.label === "Gołodupiec"; 
 }
 }
 
@@ -727,7 +720,7 @@ class Node {
         this.y = y;
         this.label = label;
         this.isActive = label === "Gołodupiec";
-        this.isProgressNode = isProgressNode; // Czy to węzeł z paskiem postępu?
-        this.progress = 0; // Początkowy stan postępu (0-100)
+        this.isProgressNode = isProgressNode; 
+        this.progress = 0;
     }
 }
