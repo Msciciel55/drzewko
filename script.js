@@ -78,12 +78,12 @@ function setup() {
 
     let professions = ["Kowalstwo", "Menelstwo", "Krawiectwo","Łowiectwo","Karczmarstwo", "Alchemictwo","Strzelectwo", "Stolarstwo", "Złodziejstwo"];
     let offsets = [
-        {x: -width / 2.5, y: height / 3},
+        {x: -width / 2.4, y: height / 3},
         {x: 0, y: height / 3},
-        { x: width / 2.5, y: height / 3 },
+        { x: width / 2.4, y: height / 3 },
 
-        {x: -width / 1.41, y: height / 3},
-        { x: width / 1.41, y: height / 3 },
+        {x: -width / 1.4, y: height / 3},
+        { x: width / 1.4, y: height / 3 },
         { x: -width / 0.99, y: height / 3 },
         { x: width / 1, y: height / 3 },
         { x: -width / 0.8, y: height / 3 },
