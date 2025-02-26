@@ -66,7 +66,7 @@ function setup() {
 
     let progressNode33 = new Node(200, -300, "Bronie Dwuręczne", true); 
     nodes.push(progressNode33);
-    connections.push([start, progressNode33]);https://github.com/Msciciel55/drzewko/blob/main/script.js
+    connections.push([start, progressNode33]);
 
     let progressNode4 = new Node(-300, -250, "Łuki", true); 
     nodes.push(progressNode4);
@@ -75,7 +75,6 @@ function setup() {
     let progressNode44 = new Node(300, -250, "Kusze", true); 
     nodes.push(progressNode44);
     connections.push([start, progressNode44]);
-
 
     let professions = ["Menelstwo", "Kowalstwo", "Krawiectwo","Łowiectwo","Karczmarstwo", "Alchemictwo","Strzelectwo", "Stolarstwo", "Złodziejstwo"];
     let offsets = [
