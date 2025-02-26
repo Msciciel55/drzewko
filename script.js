@@ -78,16 +78,16 @@ function setup() {
 
     let professions = ["Kowalstwo", "Menelstwo", "Krawiectwo","Łowiectwo","Karczmarstwo", "Alchemictwo","Strzelectwo", "Stolarstwo", "Złodziejstwo"];
     let offsets = [
-        {x: -width / 3, y: height / 3},
+        {x: -width / 2.5, y: height / 3},
         {x: 0, y: height / 3},
-        { x: width / 3, y: height / 3 },
+        { x: width / 2.5, y: height / 3 },
 
-        {x: -width / 1.68, y: height / 3},
-        { x: width / 1.68, y: height / 3 },
-        { x: -width / 1.15, y: height / 3 },
-        { x: width / 1.15, y: height / 3 },
-        { x: -width / 0.9, y: height / 3 },
-        { x: width / 0.9, y: height / 3 }
+        {x: -width / 1.41, y: height / 3},
+        { x: width / 1.41, y: height / 3 },
+        { x: -width / 0.99, y: height / 3 },
+        { x: width / 1, y: height / 3 },
+        { x: -width / 0.8, y: height / 3 },
+        { x: width / 0.8, y: height / 3 }
     ];
 
     let kowalNode, robotnikNode, krawiecNode, lowcaNode, karczmarzNode, uczonyNode, miotaczNode, stolarzNode, zlodziejNode;
