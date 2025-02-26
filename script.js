@@ -14,21 +14,25 @@ let isModalOpen = false;
 let zoomLevel = 1; 
 const zoomFactor = 0.1;
 
-
-
 let icons = {
     "Gołodupiec": "https://cdn.discordapp.com/avatars/472993187183591425/a_a2337b68637c7195080952341f92d3b5.gif?size=2048",
+    "Kowalstwo": "https://wow.zamimg.com/images/wow/icons/large/ui_profession_blacksmithing.jpg",
+    "Krawiectwo": "https://wow.zamimg.com/images/wow/icons/large/ui_profession_tailoring.jpg",
+    "Łowiectwo": "https://wow.zamimg.com/images/wow/icons/large/classicon_hunter.jpg",
+    "Stolarstwo": "https://wow.zamimg.com/images/wow/icons/large/inv_tradeskillitem_01.jpg",
+    "Alchemictwo": "https://wow.zamimg.com/images/wow/icons/large/inv_enchant_alchemycatalyst.jpg",
+    "Menelstwo": "https://media1.tenor.com/m/d8eoq1lI8nEAAAAd/peon-warcraft3.gif",
+    "Karczmarstwo": "https://wow.zamimg.com/images/wow/icons/large/inv_drink_08.jpg",
+    "Złodziejstwo": "https://wow.zamimg.com/images/wow/icons/large/ability_stealth.jpg",
+    "Strzelectwo": "https://wow.zamimg.com/images/wow/icons/large/inv_weapon_crossbow_02.jpg"
 
 };
 let notes = {
- "Gołodupiec": "Każdy jest gołodupcem",
- "Kowal": "KUJE kurwa",
- "Robotnik": "Robotnik wykonuje podstawowe prace.",
- "Krawiec": "Krawiec szyje ubrania.",
- "Farmer T1": "Podstawa rolnictwa\nTa umiejętność oblokuje:\n-Uprawa marchwi\n-Uprawa ziemniaka\n-Uprawe zboż\n-Mielenie zboża\nWymagania:\n -10PN",
- "Farmer T2": "Zawansowane rolnictwo\nTa umiejętność oblokuje:\n-Uprawa x\n-Uprawa x\n-Uprawe zboż\n-Mielenie zboża\nWymagania:\n -20PN\n-Dwa tuziny marchwi\n-Trzy tuziny ziemniaków.",
- "Farmer T3": "Mistrzowskie rolnictwo\nTa umiejętność oblokuje:\n-Uprawa x\n-Uprawa x\n-Uprawe zboż\n-Mielenie zboża\nWymagania:\n -60PN\n-Dwa tuziny x\n-Trzy tuziny x.",
-"Felczer T1": "Medycyna polowa\nTa umiejętność oblokuje:\n-Tworzenie bandaży\n-Tworzenie szyn\nWymagania:\n-10PN",
+    "Farmer T1": "Podstawowe rolnictwo\n\nTa umiejętność odblokuje: \n - Uprawa marchwi\n - Uprawa ziemniaka\n - Uprawe zboż\n - Mielenie zboża\n\nWymagania: \n - 10PN",
+ "Farmer T2": "Zawansowane rolnictwo\n\nTa umiejętność odblokuje:\n-Uprawa x\n-Uprawa x\n-Uprawe zboż\n-Mielenie zboża\n\nWymagania:\n -20PN\nUkończ zadanie:\n-Zapasy dla straży.",
+ "Farmer T3": "Mistrzowskie rolnictwo\n\nTa umiejętność odblokuje:\n-Uprawa x\n-Uprawa x\n-Uprawe zboż\n-Mielenie zboża\n\nWymagania:\n -60PN\n-Dwa tuziny x\n-Trzy tuziny x.",
+    "Felczer T1": "Medycyna polowa\n\nTa umiejętność odblokuje:\n-Tworzenie bandaży\n-Tworzenie szyn\n\nWymagania:\n-10PN",
+"Kowal T1": "Podstawa Kowalstwa\n\nTa umiejętność odblokuje:\n-Tworzenie prostych narzędzi\n\nWymagania:\n-10PN"
 };
 function preload() {
     for (let label in icons) {
@@ -72,7 +76,7 @@ function setup() {
     nodes.push(progressNode44);
     connections.push([start, progressNode44]);
 
-    let professions = ["Kowal", "Robotnik", "Krawiec","Łowca","Karczmarz", "Uczony","Miotacz", "Stolarz", "Złodziej"];
+    let professions = ["Kowalstwo", "Menelstwo", "Krawiectwo","Łowiectwo","Karczmarstwo", "Alchemictwo","Strzelectwo", "Stolarstwo", "Złodziejstwo"];
     let offsets = [
         {x: -width / 3, y: height / 3},
         {x: 0, y: height / 3},
@@ -83,7 +87,7 @@ function setup() {
         { x: -width / 1.15, y: height / 3 },
         { x: width / 1.15, y: height / 3 },
         { x: -width / 0.9, y: height / 3 },
-        {x: width / 0.9, y: height / 3 }
+        { x: width / 0.9, y: height / 3 }
     ];
 
     let kowalNode, robotnikNode, krawiecNode, lowcaNode, karczmarzNode, uczonyNode, miotaczNode, stolarzNode, zlodziejNode;
@@ -91,24 +95,24 @@ function setup() {
         let node = new Node(offsets[i].x, offsets[i].y, professions[i]);
         nodes.push(node);
         connections.push([start, node]);
-        if (professions[i] === "Kowal") kowalNode = node;
-        if (professions[i] === "Robotnik") robotnikNode = node;
-        if (professions[i] === "Krawiec") krawiecNode = node;
-        if (professions[i] === "Łowca") lowcaNode = node;
-        if (professions[i] === "Karczmarz") karczmarzNode = node;
-        if (professions[i] === "Uczony") uczonyNode = node;
-        if (professions[i] === "Miotacz") miotaczNode = node;
-        if (professions[i] === "Stolarz") stolarzNode = node;
-        if (professions[i] === "Złodziej") zlodziejNode = node;
+        if (professions[i] === "Kowalstwo") kowalNode = node;
+        if (professions[i] === "Menelstwo") robotnikNode = node;
+        if (professions[i] === "Krawiectwo") krawiecNode = node;
+        if (professions[i] === "Łowiectwo") lowcaNode = node;
+        if (professions[i] === "Karczmarstwo") karczmarzNode = node;
+        if (professions[i] === "Alchemictwo") uczonyNode = node;
+        if (professions[i] === "Strzelectwo") miotaczNode = node;
+        if (professions[i] === "Stolarstwo") stolarzNode = node;
+        if (professions[i] === "Złodziejstwo") zlodziejNode = node;
     }
 
-    let jobs = ["Drwal", "Cieśla","Farmer", "Hutnik", "Górnik"];
+    let jobs = ["Drwal","Cieśla","Farmer","Zbieracz","Hutnik", "Górnik"];
     let jobNodes = [];
     let jobOffsetY = 150;
     let jobSpacing = 100;
 
     for (let i = 0; i < jobs.length; i++) {
-        let node = new Node(robotnikNode.x + (i - 2) * jobSpacing, robotnikNode.y + jobOffsetY, jobs[i] + " T1");
+        let node = new Node(robotnikNode.x + (i - 2.5) * jobSpacing, robotnikNode.y + jobOffsetY, jobs[i] + " T1");
         nodes.push(node);
         connections.push([robotnikNode, node]);
         jobNodes.push(node);
@@ -124,7 +128,8 @@ function setup() {
         }
     }
 
-    let lowcaSkills = ["Myśliwy","Rybak","Garbarz"];
+    
+    let lowcaSkills = ["Rybak","Myśliwy","Garbarz"];
     let lowcaOffsetX = -100;
     let lowcaNodes = [];
 
@@ -197,8 +202,8 @@ function setup() {
         }
     }
 
-    let kowalSkills = ["Miecznik", "Płatnerz"];
-    let kowalOffsetX = -50;
+    let kowalSkills = ["Miecznik", "Kowal","Płatnerz"];
+    let kowalOffsetX = -100;
     let kowalNodes = [];
 
     for (let i = 0; i < kowalSkills.length; i++) {
@@ -210,7 +215,11 @@ function setup() {
     }
 
     for (let kowalJob of kowalNodes) {
-        for (let tier = 2; tier <= 5; tier++) {
+        let maxTiers = 5; 
+        if (kowalJob.label.startsWith("Kowal")) {
+            maxTiers = 2; 
+        }
+        for (let tier = 2; tier <= maxTiers; tier++) {
             let node = new Node(kowalJob.x, kowalJob.y + tierOffsetY, kowalJob.label.split(" ")[0] + " T" + tier);
             nodes.push(node);
             connections.push([kowalJob, node]);
@@ -240,8 +249,8 @@ function setup() {
         }
     }
 
-    let krawiecSkills = ["Kuśnierz", "Kaletnik"];
-    let krawiecOffsetX = -50;
+    let krawiecSkills = ["Kuśnierz","Krawiec","Kaletnik"];
+    let krawiecOffsetX = -100;
     let krawiecNodes = [];
 
     for (let i = 0; i < krawiecSkills.length; i++) {
@@ -253,7 +262,11 @@ function setup() {
     }
 
     for (let krawiecJob of krawiecNodes) {
-        for (let tier = 2; tier <= 5; tier++) {
+        let maxTiers = 5;
+        if (krawiecJob.label.startsWith("Krawiec")) {
+            maxTiers = 2;
+        }
+        for (let tier = 2; tier <= maxTiers; tier++) {
             let node = new Node(krawiecJob.x, krawiecJob.y + tierOffsetY, krawiecJob.label.split(" ")[0] + " T" + tier);
             nodes.push(node);
             connections.push([krawiecJob, node]);
@@ -262,28 +275,28 @@ function setup() {
     }
 
     let uczonySkills = ["Alchemik", "Felczer"];
-let uczonyOffsetX = -50;
-let uczonyNodes = [];
+    let uczonyOffsetX = 0;
+    let uczonyNodes = [];
 
-for (let i = 0; i < uczonySkills.length; i++) {
-    let node = new Node(uczonyNode.x + uczonyOffsetX, uczonyNode.y + jobOffsetY, uczonySkills[i] + " T1");
-    nodes.push(node);
-    connections.push([uczonyNode, node]);
-    uczonyNodes.push(node);
-    uczonyOffsetX += 100;
-}
-
-for (let uczonyJob of uczonyNodes) {
-    let maxTiers = 1;
-    if (uczonyJob.label.startsWith("Alchemik T1")) {
-        maxTiers = 4;
-    }
-    for (let tier = 2; tier <= maxTiers; tier++) {
-        let node = new Node(uczonyJob.x, uczonyJob.y + tierOffsetY, uczonyJob.label.split(" ")[0] + " T" + tier);
+    for (let i = 0; i < uczonySkills.length; i++) {
+        let node = new Node(uczonyNode.x + uczonyOffsetX, uczonyNode.y + jobOffsetY, uczonySkills[i] + " T1");
         nodes.push(node);
-        connections.push([uczonyJob, node]);
-        uczonyJob = node;
+        connections.push([uczonyNode, node]);
+        uczonyNodes.push(node);
+        uczonyOffsetX += 100;
     }
+
+    for (let uczonyJob of uczonyNodes) {
+        let maxTiers = 1;
+        if (uczonyJob.label.startsWith("Alchemik T1")) {
+            maxTiers = 4;
+        }
+        for (let tier = 2; tier <= maxTiers; tier++) {
+            let node = new Node(uczonyJob.x, uczonyJob.y + tierOffsetY, uczonyJob.label.split(" ")[0] + " T" + tier);
+            nodes.push(node);
+            connections.push([uczonyJob, node]);
+            uczonyJob = node;
+        }
     }
     
     let miotaczSkills = ["Łuczarz", "Kusznikarz",];
@@ -306,8 +319,59 @@ for (let miotaczJob of miotaczNodes) {
         connections.push([miotaczJob, node]);
         miotaczJob = node;
     }
+    }
+    let alchemikT1Node = nodes.find(node => node.label === "Alchemik T1");
+    let felczerT1Node = nodes.find(node => node.label === "Felczer T1");
+    if (alchemikT1Node && felczerT1Node) {
+        connections.push([alchemikT1Node, felczerT1Node]);
+    }
+    if (uczonyNode && felczerT1Node) {
+        connections = connections.filter(conn => !(conn[0] === uczonyNode && conn[1] === felczerT1Node));
+    }
+    if (felczerT1Node) {
+        felczerT1Node.x += 0; // Przesuń w prawo
+        felczerT1Node.y += 50;  // Przesuń w dół
+    }
+
+    let kowalT1Node = nodes.find(node => node.label === "Kowal T1");
+    let krawiecT1Node = nodes.find(node => node.label === "Krawiec T1");
+
+    let miecznikT1Node = nodes.find(node => node.label === "Miecznik T1");
+    let platnerzT1Node = nodes.find(node => node.label === "Płatnerz T1");
+    let kusnierzT1Node = nodes.find(node => node.label === "Kuśnierz T1");
+    let kaletnikT1Node = nodes.find(node => node.label === "Kaletnik T1");
+    
+    if (kowalT1Node && miecznikT1Node) {connections.push([kowalT1Node, miecznikT1Node]);}
+    if (kowalT1Node && platnerzT1Node) { connections.push([kowalT1Node, platnerzT1Node]);}
+    if (krawiecT1Node && kusnierzT1Node) { connections.push([krawiecT1Node, kusnierzT1Node]); }
+    if (krawiecT1Node && kaletnikT1Node) {connections.push([krawiecT1Node, kaletnikT1Node]);}
+
+    if (kowalNode && miecznikT1Node) {connections = connections.filter(conn => !(conn[0] === kowalNode && conn[1] === miecznikT1Node));}
+    if (kowalNode && platnerzT1Node) { connections = connections.filter(conn => !(conn[0] === kowalNode && conn[1] === platnerzT1Node));}
+    if (krawiecNode && kusnierzT1Node) { connections = connections.filter(conn => !(conn[0] === krawiecNode && conn[1] === kusnierzT1Node)); }
+    if (krawiecNode && kaletnikT1Node) { connections = connections.filter(conn => !(conn[0] === krawiecNode && conn[1] === kaletnikT1Node)); }
+
+
+    if (miecznikT1Node) {
+        miecznikT1Node.x += 0; // Przesuń w prawo
+        miecznikT1Node.y += 50;  // Przesuń w dół
+    }
+    if (platnerzT1Node) {
+        platnerzT1Node.x += 0; // Przesuń w prawo
+        platnerzT1Node.y += 50;  // Przesuń w dół
+    }
+    if (kusnierzT1Node) {
+        kusnierzT1Node.x += 0; // Przesuń w prawo
+        kusnierzT1Node.y += 50;  // Przesuń w dół
+    }
+    if (kaletnikT1Node) {
+        kaletnikT1Node.x += 0; // Przesuń w prawo
+        kaletnikT1Node.y += 50;  // Przesuń w dół
+    }
 }
-}
+
+
+
 
 function draw() {
     background(20);
@@ -377,7 +441,7 @@ function draw() {
 
                 imageMode(CENTER);
                 tint(255, iconOpacity);
-                image(icons[node.label], node.x, node.y, 50, 50);
+                image(icons[node.label], node.x, node.y, 30, 30);
                 noTint();
 
                 drawingContext.restore();
@@ -458,11 +522,12 @@ function mouseMoved() {
     const tooltip = document.getElementById('tooltip');
     tooltip.style.display = 'none';
 
+    // Przeliczanie współrzędnych myszy z uwzględnieniem zoomu i offsetu
     let adjustedMouseX = (mouseX - width / 2 - offsetX) / zoomLevel;
     let adjustedMouseY = (mouseY - height / 2 - offsetY) / zoomLevel;
 
     for (let node of nodes) {
-        let d = dist(mouseX - offsetX, mouseY - offsetY, node.x + width / 2, node.y + height / 2);
+        let d = dist(adjustedMouseX, adjustedMouseY, node.x, node.y);
         if (d < 20) {
             tooltipTimeout = setTimeout(() => {
                 let note = notes[node.label] || "Brak notatki dla tej umiejętności.";
@@ -529,25 +594,7 @@ function handleLearning(node) {
     showConfirmation(node);
 }
 
-function isSkillBlocked(skill) {
-    for (let learnedSkill of learnedSkills) {
-        if (skillBlocks[learnedSkill] && skillBlocks[learnedSkill].includes(skill)) {
-            return blockedSkills.has(skill);
-        }
-    }
 
-    for (let condition in skillBlocks) {
-        if (condition.includes("+")) {
-            let requiredSkills = condition.split(" + ");
-            let allSkillsLearned = requiredSkills.every(skill => learnedSkills.has(skill));
-            if (allSkillsLearned && skillBlocks[condition].includes(skill)) {
-                return blockedSkills.has(skill);
-            }
-        }
-    }
-
-    return false;
-}
 
 function getParent(node) {
     for (let conn of connections) {
@@ -597,76 +644,58 @@ function showConfirmation(node) {
     };
 }
 
-function learnSkill(node) {
-learnedSkills.add(node.label);
-history.push(node.label);
 
-if (skillBlocks[node.label]) {
-for (let blockedSkill of skillBlocks[node.label]) {
-    blockedSkills.add(blockedSkill);
-}
-}
-
-for (let condition in skillBlocks) {
-if (condition.includes("+")) {
-    let requiredSkills = condition.split(" + ");
-    let allSkillsLearned = requiredSkills.every(skill => learnedSkills.has(skill));
-    if (allSkillsLearned) {
-        for (let blockedSkill of skillBlocks[condition]) {
-            blockedSkills.add(blockedSkill);
-        }
-    }
-}
-}
-
-for (let conn of connections) {
-if (conn[1] === node) {
-    activeConnections.push(conn);
-}
-}
-node.isActive = true;
-}
 
 function undo() {
-if (history.length === 0) return; 
+    if (history.length === 0) return;
 
-let lastSkill = history.pop(); 
-learnedSkills.delete(lastSkill); 
+    const lastLearnedSkill = history.pop();
+    learnedSkills.delete(lastLearnedSkill);
 
-if (skillBlocks[lastSkill]) {
-for (let blockedSkill of skillBlocks[lastSkill]) {
-    blockedSkills.delete(blockedSkill);
-}
-}
+    console.log(`Cofnięto umiejętność: ${lastLearnedSkill}`);
 
-for (let condition in skillBlocks) {
-if (condition.includes("+")) {
-    let requiredSkills = condition.split(" + ");
-    let allSkillsLearned = requiredSkills.every(skill => learnedSkills.has(skill));
-    if (!allSkillsLearned) {
-        for (let blockedSkill of skillBlocks[condition]) {
+    // Usunięcie blokad powiązanych z tą umiejętnością
+    if (skillBlocks[lastLearnedSkill]) {
+        for (const blockedSkill of skillBlocks[lastLearnedSkill]) {
             blockedSkills.delete(blockedSkill);
         }
     }
-}
-}
 
-for (let node of nodes) {
-if (node.label === lastSkill) {
-    node.isActive = false;
-    break;
-}
-}
+    // Ponowna analiza warunkowych blokad
+    for (const condition in skillBlocks) {
+        if (condition.includes("+")) {
+            const requiredSkills = condition.split(" + ");
+            const allSkillsLearned = requiredSkills.every(skill => learnedSkills.has(skill));
+            if (!allSkillsLearned) {
+                for (const blockedSkill of skillBlocks[condition]) {
+                    blockedSkills.delete(blockedSkill);
+                }
+            }
+        }
+    }
+
+    // Dezaktywowanie węzła
+    for (const node of nodes) {
+        if (node.label === lastLearnedSkill) {
+            node.isActive = false;
+            break;
+        }
+    }
+
+    // 🔹 Aktualizacja blokad po cofnięciu
+    blockSubSkills();
+    
+    console.log("Nowe zablokowane umiejętności po cofnięciu:", blockedSkills);
 }
 
 function reset() {
-learnedSkills.clear(); 
-blockedSkills.clear(); 
-history = []; 
+    learnedSkills.clear(); 
+    blockedSkills.clear(); 
+    history = [];
 
-for (let node of nodes) {
-node.isActive = node.label === "Gołodupiec"; 
-}
+    for (let node of nodes) {
+        node.isActive = (node.label === "Gołodupiec"); 
+    }
 }
 
 document.getElementById('undoButton').addEventListener('click', undo);
@@ -681,4 +710,122 @@ class Node {
         this.isProgressNode = isProgressNode; 
         this.progress = 0;
     }
+}
+
+
+const mainSkills = ["Kowalstwo", "Stolarstwo", "Alchemictwo", "Łowiectwo", "Menelstwo", "Krawiectwo", "Karczmarstwo", "Złodziejstwo", "Strzelectwo"];
+
+const branchToSubSkills = {
+    "Kowalstwo": ["Kowal", "Miecznik", "Płatnerz"],
+    "Stolarstwo": ["Stolarz"],
+    "Alchemictwo": ["Alchemik", "Felczer"],
+    "Łowiectwo": ["Myśliwy", "Rybak", "Garbarz"],
+    "Menelstwo": ["Drwal", "Cieśla", "Zbieracz", "Farmer", "Górnik", "Hutnik"],
+    "Krawiectwo": ["Krawiec", "Kaletnik", "Kuśnierz"],
+    "Karczmarstwo": ["Gorzelnik", "Kucharz"],
+    "Złodziejstwo": ["Złodziej"],
+    "Strzelectwo": ["Łuczarz", "Kusznikarz"]
+};
+function blockSubSkills() {
+    blockedSkills.clear();
+
+    const selectedMainSkills = mainSkills.filter(skill => learnedSkills.has(skill));
+    const selectedCount = selectedMainSkills.length;
+
+    console.log("Wybrane główne umiejętności:", selectedMainSkills);
+
+    if (selectedCount === 1) {
+        const selectedSkill = selectedMainSkills[0];
+        console.log(`Jedna wybrana umiejętność: ${selectedSkill}`);
+
+        for (const branch in branchToSubSkills) {
+            if (branch !== selectedSkill) {
+                for (const subSkill of branchToSubSkills[branch]) {
+                    blockedSkills.add(`${subSkill} T3`);
+                    blockedSkills.add(`${subSkill} T4`);
+                    blockedSkills.add(`${subSkill} T5`);
+                }
+            }
+        }
+    } else if (selectedCount === 2) {
+        // 🔹 Znajdujemy pierwszą wybraną umiejętność według historii wyborów
+        let firstSkill = null;
+        let secondSkill = null;
+
+        for (const skill of history) {
+            if (selectedMainSkills.includes(skill)) {
+                if (firstSkill === null) {
+                    firstSkill = skill;
+                } else {
+                    secondSkill = skill;
+                    break; // Mamy już dwie, więc wychodzimy
+                }
+            }
+        }
+
+        console.log(`Pierwsza wybrana: ${firstSkill}, Druga wybrana: ${secondSkill}`);
+
+        // 🔹 1. Blokujemy wszystkie inne gałęzie (T1-T5)
+        for (const branch in branchToSubSkills) {
+            if (branch !== firstSkill && branch !== secondSkill) {
+                for (const subSkill of branchToSubSkills[branch]) {
+                    blockedSkills.add(`${subSkill} T1`);
+                    blockedSkills.add(`${subSkill} T2`);
+                    blockedSkills.add(`${subSkill} T3`);
+                    blockedSkills.add(`${subSkill} T4`);
+                    blockedSkills.add(`${subSkill} T5`);
+                }
+            }
+        }
+
+        // 🔹 2. Druga wybrana gałąź (T3-T5 ZABLOKOWANE)
+        for (const subSkill of branchToSubSkills[secondSkill]) {
+            blockedSkills.add(`${subSkill} T3`);
+            blockedSkills.add(`${subSkill} T4`);
+            blockedSkills.add(`${subSkill} T5`);
+        }
+
+        // 🔹 3. Pierwsza wybrana gałąź zostaje całkowicie odblokowana
+        for (const subSkill of branchToSubSkills[firstSkill]) {
+            blockedSkills.delete(`${subSkill} T1`);
+            blockedSkills.delete(`${subSkill} T2`);
+            blockedSkills.delete(`${subSkill} T3`);
+            blockedSkills.delete(`${subSkill} T4`);
+            blockedSkills.delete(`${subSkill} T5`);
+        }
+    }
+
+    console.log("Zablokowane umiejętności:", blockedSkills);
+}
+
+
+function blockSkillsBasedOnConditions() {
+    for (const condition in skillBlocks) {
+        if (condition.includes("+")) {
+            const requiredSkills = condition.split(" + ");
+            const allSkillsLearned = requiredSkills.every(skill => learnedSkills.has(skill));
+            if (allSkillsLearned) {
+                for (const blockedSkill of skillBlocks[condition]) {
+                    blockedSkills.add(blockedSkill);
+                }
+            }
+        }
+    }
+}
+// jprd ale bagno jak hk
+function learnSkill(node) {
+    learnedSkills.add(node.label);
+    history.push(node.label);
+
+    if (mainSkills.includes(node.label)) {
+        blockSubSkills();
+    }
+
+    blockSkillsBasedOnConditions(); // Dodaj tę linię, aby blokować umiejętności na podstawie warunków
+
+    node.isActive = true;
+}
+
+function isSkillBlocked(skill) {
+    return blockedSkills.has(skill);
 }
