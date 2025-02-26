@@ -76,10 +76,10 @@ function setup() {
     nodes.push(progressNode44);
     connections.push([start, progressNode44]);
 
-    let professions = ["Menelstwo", "Kowalstwo", "Krawiectwo","Łowiectwo","Karczmarstwo", "Alchemictwo","Strzelectwo", "Stolarstwo", "Złodziejstwo"];
+    let professions = ["Kowalstwo", "Menelstwo", "Krawiectwo","Łowiectwo","Karczmarstwo", "Alchemictwo","Strzelectwo", "Stolarstwo", "Złodziejstwo"];
     let offsets = [
-        {x: 0, y: height / 3},
         {x: -width / 2.5, y: height / 3},
+        {x: 0, y: height / 3},
         { x: width / 2.5, y: height / 3 },
         {x: -width / 1.41, y: height / 3},
         { x: width / 1.41, y: height / 3 },
@@ -88,7 +88,6 @@ function setup() {
         { x: -width / 0.8, y: height / 3 },
         { x: width / 0.8, y: height / 3 }
     ];
-
     let kowalNode, robotnikNode, krawiecNode, lowcaNode, karczmarzNode, uczonyNode, miotaczNode, stolarzNode, zlodziejNode;
     for (let i = 0; i < professions.length; i++) {
         let node = new Node(offsets[i].x, offsets[i].y, professions[i]);
